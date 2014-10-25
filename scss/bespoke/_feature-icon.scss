@@ -1,0 +1,152 @@
+.feature-icon{
+	$thisWidth: 80px;
+	display: inline-block;
+	height: $thisWidth;
+	position: relative;
+	transition: transform $animation ease-out;
+	width: $thisWidth;
+
+	@include breakpoint(MEDIUM){
+		$thisWidth: 100px;
+		height: $thisWidth;
+		width: $thisWidth;
+	};
+
+	@include breakpoint(LARGE){
+		$thisWidth: 120px;
+		height: $thisWidth;
+		width: $thisWidth;
+	};
+
+	.shadow-shell, .icon-shadow, .ring-light, .ring-dark, .base, .symbol{
+		position: absolute;
+	}
+
+	.shadow-shell{
+		bottom: -25%;
+		height: 10%;
+		left: 20%;
+		transition: opacity $animation ease-out,
+					transform $animation ease-out;
+		width: 60%;
+
+		.icon-shadow{
+			background-color: rgba(black, 0.10);
+			height: 100%;
+			left: 0;
+			top: 0;
+			width: 100%;
+		}
+	}
+
+	.icon-shadow, .ring-light, .ring-dark, .base{
+		border-radius: 50%;
+		behavior: url(polyfills/pie.htc);
+	}
+
+	.ring-light{
+		$thisDelay: $animation * 0;
+		$thisOffset: -10%;
+		$thisWidth: 120%;
+		border: {
+			width: 1px;
+			style: solid
+		};
+		height: $thisWidth;
+		left: $thisOffset;
+		opacity: 0.33;
+		top: $thisOffset;
+		// transition: opacity $animation $thisDelay ease-out,
+		//			transform $animation $thisDelay ease-out;
+		width: $thisWidth;
+	}
+
+	.ring-dark{
+		$thisDelay: $animation * 1;
+		$thisOffset: -5%;
+		$thisWidth: 110%;
+		border: {
+			width: 2px;
+			style: solid
+		};
+		height: $thisWidth;
+		left: $thisOffset;
+		opacity: 0.66;
+		top: $thisOffset;
+		// transition: opacity $animation $thisDelay ease-out,
+		//			transform $animation $thisDelay ease-out;
+		width: $thisWidth;
+	}
+
+	.base{
+		$thisDelay: $animation * 2;
+		$thisOffset: 0;
+		$thisWidth: 100%;
+		background-color: gray;
+		height: $thisWidth;
+		left: $thisOffset;
+		top: $thisOffset;
+		// transition: opacity $animation $thisDelay ease-out,
+		//			transform $animation $thisDelay ease-out;
+		width: $thisWidth;
+	}
+
+	.symbol{
+		$thisDelay: $animation * 3;
+		$thisOffset: -10px;
+		$thisWidth: 100px;
+		height: $thisWidth;
+		left: $thisOffset;
+		top: $thisOffset;
+		// transition: opacity $animation $thisDelay ease-out,
+		//			transform $animation $thisDelay ease-out;
+		width: $thisWidth;
+
+	@include breakpoint(MEDIUM){
+		$thisOffset: -12.5px;
+		$thisWidth: 125px;
+		height: $thisWidth;
+		left: $thisOffset;
+		top: $thisOffset;
+		width: $thisWidth;
+	};
+
+	@include breakpoint(LARGE){
+		$thisOffset: -15px;
+		$thisWidth: 150px;
+		height: $thisWidth;
+		left: $thisOffset;
+		top: $thisOffset;
+		width: $thisWidth;
+	};
+	}
+}
+
+.feature-icon.white-base{
+
+	.base{
+		background-color: white;
+	}
+	
+	.ring-light, .ring-dark{
+		border-color: white;
+	}
+}
+
+a:hover{
+
+	.feature-icon{
+		$thisDelay: 0s;
+		$thisOffset: 20px;
+		transform: translateY(-$thisOffset);
+
+		.shadow-shell{
+			opacity: 0.25;
+			transform: scaleX(0.5) translateY($thisOffset);
+		}
+	}
+}
+
+.off-stage{
+	@extend .feature-icon-off-stage;
+}

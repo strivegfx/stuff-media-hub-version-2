@@ -1,0 +1,213 @@
+#enquires{
+	@extend .vertical-spacing;
+	background: {
+		image: url(../img/enquires-background.jpg);
+		position: center center;
+		repeat: no-repeat;
+		size: cover;
+	};
+	-ms-behavior: url(polyfills/backgroundsize.htc);
+	color: white;
+	overflow: hidden;
+	position: relative;
+
+	.divider-shadow-top, .divider-shadow-bottom{
+		
+		&:after{
+			opacity: 0.5;
+		}
+	}
+
+	.circle-background{
+		$thisAnimation: 1s;
+		background-color: rgba(black, 0.5);
+		border-radius: 0;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		transform: translate(0);
+		transition: opacity 2s ease-out; // generic fade in black
+		width: 100%;
+
+		@include breakpoint(MEDIUM){
+			background-color: transparent;
+			height: auto;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: auto;
+		}
+
+		.base, .ring-light, .ring-dark{
+			display: none;
+			position: absolute;
+
+			@include breakpoint(MEDIUM){
+				display: block;
+			}
+		}
+
+		.ring-light, .ring-dark{
+			border: {
+				radius: 50%;
+				style: solid;
+			}
+		}
+
+		.base{
+			$thisDelay: $thisAnimation;
+			background-color: rgba($stuffBlue, 0.8);
+			border-radius: 50%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			transition: opacity $thisAnimation $thisDelay ease-out,
+						transform $thisAnimation $thisDelay ease-out;
+			width: 100%;
+		}
+
+		.ring-dark{
+			$thisDelay: ($thisAnimation * 0.5);
+			$thisOffset: -2%;
+			$thisWidth: 104%;
+			border: {
+				color: rgba($stuffBlue, 0.66);
+				width: 6px;
+			}
+			height: $thisWidth;
+			left: $thisOffset;
+			top: $thisOffset;
+			transition: opacity $thisAnimation $thisDelay ease-out,
+						transform $thisAnimation $thisDelay ease-out;
+			width: $thisWidth;
+		}
+
+		.ring-light{
+			$thisOffset: -4%;
+			$thisWidth: 108%;
+			border: {
+				color: rgba($stuffBlue, 0.33);
+				width: 3px;
+			}
+			height: $thisWidth;
+			left: $thisOffset;
+			top: $thisOffset;
+			transition: opacity $thisAnimation ease-out,
+						transform $thisAnimation ease-out;
+			width: $thisWidth;
+		}
+
+		.spacer{
+			$thisWidth: 550px;
+			height: auto;
+			width: $thisWidth;
+
+			@include breakpoint(LARGE){
+				$thisWidth: 700px;
+				width: $thisWidth;
+			}
+		}
+	}
+
+	.title-container{
+		position: relative;
+
+		h3{
+			transition: opacity $animation ease-out,
+						transform $animation ease-out;
+		}
+
+		.description{
+			$thisDelay: $animation;
+			transition: opacity $animation $thisDelay ease-out,
+						transform $animation $thisDelay ease-out;
+		}
+	}
+
+	.contact-information{
+		@extend .vertical-spacing;
+		color: white;
+		display: block;
+		text-decoration: none;
+		z-index: 1;
+
+		&:hover .extra-detail{
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.extra-detail{
+			opacity: 0;
+			transform: translateY(-20px);
+			transition: opacity $animation ease-out,
+						transform $animation ease-out;
+		}
+	}
+
+	@for $i from 1 through 2{
+
+		.contact-information:nth-child(#{$i}){
+			$delay: ($animation * $i * 2);
+
+			@include featureIconTransitionDelay($delay);
+
+			h3{
+				$thisDelay: $delay + ($animation * 2);
+				transition: opacity $animation $thisDelay ease-out,
+							transform $animation $thisDelay ease-out;
+			}
+		}
+
+	} // end of loop
+}
+
+.no-rgba, .no-csstransforms{
+
+	#enquires{
+
+		.circle-background{
+			background: {
+				color: transparent;
+				image: url(../img/black-50percent-tile.png);
+			}
+			border-radius: 0;
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			transform: translate(0);
+			width: 100%;
+
+			&:before, &:after{
+				display: none;
+			}
+		}
+	}
+}
+
+#enquires.off-stage{
+
+	.title-container{
+
+		h3, .description{
+			@extend .generic-animation;
+		}
+	}
+
+	.contact-information h3{
+		@extend .generic-animation;
+	}
+
+	.circle-background{
+		opacity: 0;
+
+		@include breakpoint(MEDIUM){
+			
+			.base, .ring-light, .ring-dark{
+				opacity: 0;
+				transform: scale(0.6) translateY($animationOffset);
+			}
+		}
+	}
+}

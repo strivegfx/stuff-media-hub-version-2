@@ -1,0 +1,296 @@
+#footer{
+	$borderWidth: 1px;
+	$logoOffset: 130px;
+	$shrinkRatio: 1.5;
+	$detailOffset: 40px;
+	background-color: $gray-dark;
+	// border-bottom: 10px solid black;
+	overflow: hidden;
+	position: relative;
+
+	@for $i from 1 through 4{
+
+		.contact-shell:nth-child(#{$i}){
+			$delay: ($animation * $i);
+
+			.symbol{
+				transition: opacity $animation $delay ease-out,
+							transform $animation $delay ease-out;
+			}
+
+			@for $j from 1 through 5{
+
+				.contact-details li:nth-child(#{$j}){
+					$thisDelay: $delay + (0.5 * $j);
+					transition: opacity $animation $thisDelay ease-out,
+								transform $animation $thisDelay ease-out;
+				}
+
+			} // end of loop
+		}
+
+	} // end of loop
+
+	.contact-shell{
+		background-color: $gray-darker;
+		height: auto;
+		position: relative;
+
+		@include breakpoint(SMALL){
+			border: {
+				// bottom: $borderWidth solid white;
+				top: $borderWidth solid white;
+			}
+			height: 280px;
+			margin-top: $logoOffset;
+		}
+
+		&:before{
+			@extend .pseudo-element-base;
+			background-color: $gray-darker;
+			border: {
+				// bottom: $borderWidth solid white;
+				top: $borderWidth solid white;
+			}
+			box-sizing: content-box;
+			display: none;
+			height: 100%;
+			// left: 100%;
+			// right: 100%;
+			top: - $borderWidth;
+			width: 1000%;
+		}
+
+		&.stuff{
+			$thisLogoHeightLg: 43px;
+			$thisLogoHeightSm: $thisLogoHeightLg / $shrinkRatio;
+			$marginTopLg: ($logoOffset - $thisLogoHeightLg) / 2;
+			$marginTopSm: ($logoOffset - $thisLogoHeightSm) / 2;
+
+			.symbol{
+				height: $thisLogoHeightSm;
+				margin-top: ($logoOffset - $thisLogoHeightSm) / 2;
+
+				@include breakpoint(MEDIUM){
+					height: $thisLogoHeightLg;
+					margin-top: ($logoOffset - $thisLogoHeightLg) / 2;
+				}
+			}
+
+			&:before{
+			
+				@include breakpoint(SMALL){
+					display: block;
+					left: -1000%;
+				}
+			}
+
+			.contact-details{
+				margin-top: $marginTopSm + $detailOffset;
+
+				@include breakpoint(MEDIUM){
+					margin-top: $marginTopLg + $detailOffset;
+				}
+			}
+		}
+
+		&.essential-mums{
+			$thisLogoHeightLg: 49px;
+			$thisLogoHeightSm: $thisLogoHeightLg / $shrinkRatio;
+			$marginTopLg: ($logoOffset - $thisLogoHeightLg) / 2;
+			$marginTopSm: ($logoOffset - $thisLogoHeightSm) / 2;
+
+			.symbol{
+				height: $thisLogoHeightSm;
+				margin-top: ($logoOffset - $thisLogoHeightSm) / 2;
+
+				@include breakpoint(MEDIUM){
+					height: $thisLogoHeightLg;
+					margin-top: ($logoOffset - $thisLogoHeightLg) / 2;
+				}
+			}
+
+			.contact-details{
+				margin-top: $marginTopSm + $detailOffset;
+
+				@include breakpoint(MEDIUM){
+					margin-top: $marginTopLg + $detailOffset;
+				}
+			}
+		}
+
+		&.fairfax-media{
+			$thisLogoHeightLg: 63px;
+			$thisLogoHeightSm: $thisLogoHeightLg / $shrinkRatio;
+			$marginTopLg: ($logoOffset - $thisLogoHeightLg) / 2;
+			$marginTopSm: ($logoOffset - $thisLogoHeightSm) / 2;
+
+			.symbol{
+				height: $thisLogoHeightSm;
+				margin-top: ($logoOffset - $thisLogoHeightSm) / 2;
+
+				@include breakpoint(MEDIUM){
+					height: $thisLogoHeightLg;
+					margin-top: ($logoOffset - $thisLogoHeightLg) / 2;
+				}
+			}
+
+			.contact-details{
+				margin-top: $marginTopSm + $detailOffset;
+
+				@include breakpoint(MEDIUM){
+					margin-top: $marginTopLg + $detailOffset;
+				}
+			}
+		}
+
+		&.key-links{
+			$thisLogoHeightLg: 77px;
+			$thisLogoHeightSm: $thisLogoHeightLg / $shrinkRatio;
+			$marginTopLg: ($logoOffset - $thisLogoHeightLg) / 2;
+			$marginTopSm: ($logoOffset - $thisLogoHeightSm) / 2;
+
+			.symbol{
+				height: $thisLogoHeightSm;
+				margin-top: ($logoOffset - $thisLogoHeightSm) / 2;
+
+				@include breakpoint(MEDIUM){
+					height: $thisLogoHeightLg;
+					margin-top: ($logoOffset - $thisLogoHeightLg) / 2;
+				}
+			}
+
+			&:before{
+			
+				@include breakpoint(SMALL){
+					display: block;
+					left: 100%;
+				}
+			}
+
+			.contact-details{
+				margin-top: $marginTopSm + $detailOffset;
+
+				@include breakpoint(MEDIUM){
+					margin-top: $marginTopLg + $detailOffset;
+				}
+			}
+		}
+	}
+
+	.logo-shell{
+		
+
+		@include breakpoint(SMALL){
+			margin-top: - $logoOffset;
+		}
+
+		.symbol{
+			width: auto;
+		}
+	}
+
+	.contact-details{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+
+		&:after{
+			$thisPadding: 45px;
+			@extend .pseudo-element-base;
+			background-color: $gray-dark;
+			background-image: linear-gradient(to top, $gray-darker, $gray-dark, $gray-darker);
+			bottom: $thisPadding;
+			display: none;
+			left: 20%;
+			top: $thisPadding;
+			width: 1px;
+		}
+
+		@include breakpoint(SMALL){
+			padding: 0 0 0 30%;
+			text-align: left;
+
+			&:after{
+				display: block;
+			}
+		}
+
+		a{
+			color: $gray-light;
+			display: inline-block;
+			padding: 10px 0;
+			transition: color $animation ease-out;
+
+			&:hover{
+				color: white;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.arrow{
+		height: 30px;
+		left: 0;
+		overflow: hidden;
+		position: absolute;
+		top: $logoOffset;
+		width: 100%;
+
+		@include breakpoint(SMALL){
+			top: - $borderWidth;
+		}
+
+		&:before{
+			@extend .pseudo-element-base;
+			// background-color: white;
+			background-image: linear-gradient(to left, rgba(white, 0), white, rgba(white, 0));
+			height: $borderWidth;
+			left: 25%;
+			top: 0;
+			width: 50%;
+		}
+
+		&:after{
+			$thisWidth: 20px;
+			@extend .pseudo-element-base;
+			background-color: $gray-darker;
+			border: $borderWidth solid white;
+			height: $thisWidth;
+			left: 50%;
+			transform: rotate(45deg) translate(-70%, 10%);
+			top: -5px;
+			width: $thisWidth;
+
+			@include breakpoint(SMALL){
+				background-color: $gray-dark;
+			}
+		}
+	}
+
+	.divider-shadow-top, .divider-shadow-bottom{
+		
+		&:after{
+			// opacity: 0.5;
+		}
+	}
+}
+
+.no-csstransforms #footer{
+
+	.arrow{
+		display: none;
+	}
+}
+
+#footer.off-stage{
+
+	.symbol{
+		@extend .generic-animation;
+	}
+
+	.contact-details li{
+		opacity: 0;
+		transform: translateX(30px);
+	}
+}

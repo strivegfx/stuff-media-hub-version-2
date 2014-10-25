@@ -1,0 +1,140 @@
+.vertical-spacing{
+	$thisMargin: $padding-sm / 2;
+	padding-bottom: $thisMargin;
+	padding-top: $thisMargin;
+
+	@include breakpoint(MEDIUM){
+		$thisMargin: $padding-md / 2;
+		padding-bottom: $thisMargin;
+		padding-top: $thisMargin;
+	};
+
+	@include breakpoint(LARGE){
+		$thisMargin: $padding-lg / 2;
+		padding-bottom: $thisMargin;
+		padding-top: $thisMargin;
+	};	
+}
+
+.pseudo-element-base{
+	content: "";
+	display: block;
+	position: absolute;
+}
+
+.generic-animation{
+	opacity: 0;
+	transform: translateY($animationOffset);
+}
+
+@mixin featureIconTransitionDelay($delay){
+
+	.feature-icon{
+
+		.icon-shadow{
+			$thisAnimation: $animation * 4;
+			$thisDelay: $delay;
+			transition: opacity $animation $thisDelay ease-out,
+						transform $animation $thisDelay ease-out;
+		}
+
+		.ring-light{
+			$thisDelay: $delay + ($animation * 0);
+			transition: opacity $animation $thisDelay ease-out,
+						transform $animation $thisDelay ease-out;
+		}
+
+		.ring-dark{
+			$thisDelay: $delay + ($animation * 1);
+			transition: opacity $animation $thisDelay ease-out,
+						transform $animation $thisDelay ease-out;
+		}
+
+		.base{
+			$thisDelay: $delay + ($animation * 2);
+			transition: opacity $animation $thisDelay ease-out,
+						transform $animation $thisDelay ease-out;
+
+		}
+
+		.symbol{
+			$thisDelay: $delay + ($animation * 3);
+			transition: opacity $animation $thisDelay ease-out,
+						transform $animation $thisDelay ease-out;
+		}
+	}		
+}
+
+@mixin featureImageCircleColor($type, $color){
+
+	.circle{
+
+		&.color-#{$type}{
+
+			.ring-light{
+				border-color: $color;
+			}
+
+			.ring-dark{
+				border-color: $color;
+			}
+
+			.base{
+
+				&.solid{
+					background-color: $color;
+				}
+
+				&.border-tiny,
+				&.border-small,
+				&.border-medium,
+				&.border-large{
+					border-color: $color;
+				}
+			}
+		}
+	}
+}
+
+@mixin featureImageTint($color){
+
+	&:after{
+		background-image: linear-gradient(to left, rgba($color, 0.4), rgba($color, 0), rgba($color, 0.4));
+	}
+
+}
+
+@mixin colorLinkUnderline($reference, $color){
+
+	##{$reference}-link a:hover .link-name .underline{
+		background-color: $color;
+	}
+}
+
+@mixin navigationVisibility($reference, $state){
+
+	body.#{$reference} nav #navigation-links ##{$reference}-link{
+		display: $state;
+	}
+
+}
+
+.feature-icon-off-stage{
+
+	.feature-icon{
+
+		.icon-shadow{
+			opacity: 0;
+			transform: scaleX(0.5);
+		}
+
+		.ring-light, .ring-dark, .base, .symbol{
+			opacity: 0;
+			transform: scale(1.2) translateY($animationOffset);
+		}
+
+		.symbol{
+			transform: rotate(90deg) scale(1.2) translateX($animationOffset);
+		}
+	}
+}

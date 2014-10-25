@@ -1,0 +1,18 @@
+@mixin breakpoint($windowWidth){
+
+	@if $windowWidth == EXTASMALL{
+		@media only screen and (min-width: $screen-xs-min){ @content; }
+	}
+
+	@else if  $windowWidth == SMALL{
+		@media only screen and (min-width: $screen-sm-min){ @content; }
+	}
+
+	@else if  $windowWidth == MEDIUM{
+		@media only screen and (min-width: $screen-md-min){ @content; }
+	}
+
+	@else if $windowWidth == LARGE{
+		@media only screen and (min-width: $screen-lg-min){ @content; }
+	}
+}

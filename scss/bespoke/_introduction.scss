@@ -1,0 +1,126 @@
+#introduction{
+	@extend .vertical-spacing;
+
+	/* margin-top: 200px;
+
+	@include breakpoint(MEDIUM){
+		margin-top: 350px;
+	}
+
+	@include breakpoint(LARGE){
+		margin-top: 470px;
+	} */
+
+	@for $i from 1 through 4{
+
+		.information-feature:nth-child(#{$i}){
+			$delay: ($animation * $i * 2);
+
+			@include featureIconTransitionDelay($delay);
+
+			h3{
+				$thisDelay: $delay + ($animation * 1);
+				transition: opacity $animation $thisDelay ease-out,
+							transform $animation $thisDelay ease-out;
+			}
+
+			.description{
+				$thisDelay: $delay + ($animation * 2);
+				transition: opacity $animation $thisDelay ease-out,
+							transform $animation $thisDelay ease-out;
+			}
+		}
+
+	} // end of loop
+
+	.information-feature{
+		@extend .vertical-spacing;
+
+		&.audience{
+			color: $stuffRed;
+
+			.feature-icon{
+
+				.base{
+					background-color: $stuffRed;
+				}
+				
+				.ring-light, .ring-dark{
+					border-color: $stuffRed;
+				}
+			}
+
+			.description{
+				color: $stuffRedD;
+			}
+		}
+
+		&.reach-engagement{
+			color: $stuffYellow;
+
+			.feature-icon{
+
+				.base{
+					background-color: $stuffYellow;
+				}
+				
+				.ring-light, .ring-dark{
+					border-color: $stuffYellow;
+				}
+			}
+
+			.description{
+				color: $stuffYellowD;
+			}
+		}
+
+		&.here-to-help{
+			color: $stuffPurple;
+
+			.feature-icon{
+
+				.base{
+					background-color: $stuffPurple;
+				}
+				
+				.ring-light, .ring-dark{
+					border-color: $stuffPurple;
+				}
+			}
+
+			.description{
+				color: $stuffPurpleD;
+			}
+		}
+
+		&.finding-niche{
+			color: $stuffGreen;
+
+			.feature-icon{
+
+				.base{
+					background-color: $stuffGreen;
+				}
+				
+				.ring-light, .ring-dark{
+					border-color: $stuffGreen;
+				}
+			}
+
+			.description{
+				color: $stuffGreenD;
+			}
+		}
+	}
+}
+
+#introduction.off-stage{
+
+	.information-feature{
+
+		h3, .description{
+			@extend .generic-animation;
+		}
+
+	}
+}

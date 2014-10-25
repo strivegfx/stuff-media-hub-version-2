@@ -1,0 +1,272 @@
+nav{
+	background-color: rgba(black, 0);
+	left: 0;
+	position: fixed;
+	top: 0;
+	transition: background-color $animation ease-out;
+	width: 100%;
+	z-index: 999;
+
+	@include breakpoint(SMALL){
+		width: inherit;
+	}
+
+	&[data-state="active"]{
+		background-color: rgba(black, 0.8);
+		bottom: 0;
+		right: 0;
+
+		#navigation-cta .draw-icon{
+
+			&.draw-icon{
+				background-color: white;
+				transform: rotate(180deg) translateX(-10px);
+			}
+
+			.top-bar{
+				transform: rotate(45deg) translate(11px) scaleX(1.2);
+			}
+
+			.bottom-bar{
+				transform: rotate(-45deg) translate(11px) scaleX(1.2);
+			}
+		}
+
+		#navigation-links{
+			// display: block;
+			visibility: visible;
+
+			@for $i from 1 through 6{
+
+				li:nth-child(#{$i}){
+					$delay: ($animation * $i * 2);
+
+					@include featureIconTransitionDelay($delay);
+
+					.link-name{
+						$thisDelay: $delay + ($animation * 1);
+						transition: opacity $animation $thisDelay ease-out,
+									transform $animation $thisDelay ease-out;
+					}
+				}
+
+			} // end of loop
+		}
+
+	} // end of active
+
+	&[data-state="dorment"]{
+
+		#navigation-links li{
+			@extend .feature-icon-off-stage;
+
+			.link-name{
+				@extend .generic-animation;
+			}
+		}
+	}
+	
+	#navigation-cta{
+		background-color: white;
+		border-bottom: 2px solid $gray-dark;
+		display: block;
+		left: 0;
+		padding: 10px 0 10px 60px;
+		position: absolute;
+		text-align: left;
+		top: 0;
+		width: 100%;
+		z-index: 1;
+
+		@include breakpoint(SMALL){
+			border: 2px solid $gray-dark;
+			border-radius: 25px;
+			left: $padding-sm;
+			padding: 10px 20px 10px 60px;
+			top: $padding-sm;
+			width: inherit;
+		}
+
+		.shadow-bottom{
+			pointer-events: none;
+			position: absolute;
+			height: 20px;
+			left: 0;
+			overflow: hidden;
+			top: 100%;
+			width: 100%;
+
+			&:after{
+				@extend .pseudo-element-base;
+				border-radius: 50%;
+				bottom: 100%;
+				box-shadow: 0 0 20px black;
+				height: 200%;
+				left: 0;
+				width: 100%;
+				z-index: -100;
+
+				@include breakpoint(SMALL){
+					box-shadow: 0 0 15px black;
+					left: 10%;
+					width: 80%;
+				}
+			}
+		}
+
+		.draw-icon{
+			left: 20px;
+			margin-top: -1px;
+			position: absolute;
+			top: 50%;
+
+			&.draw-icon, .top-bar, .bottom-bar{
+				background-color: $gray-dark;
+				height: 2px;
+				transition: background-color $animation ease-out,
+							opacity $animation ease-out,
+							transform $animation ease-out;
+				width: 20px;
+			}
+
+			.top-bar, .bottom-bar{
+				left: 0;
+				position: absolute;
+			}
+
+			.top-bar{
+				left: 0;
+				top: -8px;
+			}
+
+			.bottom-bar{
+				left: 0;
+				top: 8px;
+			}
+		}
+
+		.stuff-logo .symbol{
+			height: 25px;
+			width: auto;
+		}
+	}
+
+	#navigation-links{
+		bottom: 0;
+		// display: none;
+		left: 0;
+		overflow: auto;
+		position: absolute;
+		top: 45px; // for mobile nav header
+		visibility: hidden;
+		width: 100%;
+		z-index: 0;
+
+		@include breakpoint(SMALL){
+			overflow: inherit;
+			top: 0;
+		}
+
+		.center-content{
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: 0;
+
+			@include breakpoint(SMALL){
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+
+		ul{
+			list-style-type: none;
+			padding: $padding-sm 0;
+		}
+
+		li{
+			margin: $padding-sm 0 $padding-md 0;
+
+			@include breakpoint(SMALL){
+				margin: 0;
+
+				&:nth-child(1), &:nth-child(2), &:nth-child(3){
+					margin: 0 0 $padding-lg 0;
+				}
+			}
+
+			a{
+				display: block;
+				text-decoration: none;
+			}
+
+			.link-name{
+				
+				.copy{
+					color: white;
+					display: inline;
+					position: relative;
+				}
+
+				.underline{
+					background-color: white;
+					display: inline-block;
+					height: 10px;
+					position: absolute;
+					left: 50%;
+					top: 110%;
+					transition: left $animation ease-out,
+								width $animation ease-out;
+					width: 0;
+				}
+			}
+
+			.base{
+				background-color: white;
+			}
+
+			.ring-light, .ring-dark{
+				border-color: white;
+			}
+		}
+
+		li a:hover{
+
+			.link-name .underline{
+				left: 0;
+				width: 100%;
+			}
+		}
+
+		@include colorLinkUnderline("home", $homeOrange);
+		@include colorLinkUnderline("media-kit", $stuffRed);
+		@include colorLinkUnderline("rate-card", $stuffYellow);
+		@include colorLinkUnderline("tech-specs", $stuffGreen);
+		@include colorLinkUnderline("terms-and-conditions", $stuffBlue);
+		@include colorLinkUnderline("booking", $stuffPurple);
+
+	}
+}
+
+$navBtns: ("home", "media-kit", "rate-card", "tech-specs", "terms-and-conditions", "booking");
+
+// hide the navigation link the corrorsponds to the current active page
+@each $thisBtn in $navBtns{
+
+	@include navigationVisibility($thisBtn, none);
+
+} // end of each
+
+// show all navigation button so that we get a clean 6up set
+@include breakpoint(SMALL){
+
+	@each $thisBtn in $navBtns{
+
+		@include navigationVisibility($thisBtn, block);
+
+	} // end of each
+}
+
+
+

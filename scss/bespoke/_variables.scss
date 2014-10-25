@@ -1,0 +1,39 @@
+// ANIMATION SPEED
+$animation: 0.25s;
+$animationOffset: -50px;
+
+// STUFF COLORS
+$stuffRed: #ff1627;
+$stuffRedL: lighten($stuffRed, 30%); // light
+$stuffRedD: darken($stuffRed, 30%); // dark
+
+$stuffYellow: #ffc332;
+$stuffYellowL: lighten($stuffYellow, 30%); // light
+$stuffYellowD: darken($stuffYellow, 30%); // dark
+
+$stuffGreen: #10a370;
+$stuffGreenL: lighten($stuffGreen, 30%); // light
+$stuffGreenD: darken($stuffGreen, 30%); // dark
+
+$stuffBlue: #00adec;
+$stuffBlueL: lighten($stuffBlue, 40%); // light
+$stuffBlueD: darken($stuffBlue, 25%); // dark
+
+$stuffPurple: #bf3f8a;
+$stuffPurpleL: lighten($stuffPurple, 30%); // light
+$stuffPurpleD: darken($stuffPurple, 25%); // dark
+
+// ESSENTIAL MUMS COLORS
+$essentialMumsPink: #E02876;
+
+// FAIRFAX COLORS
+$fairfaxBlue: #0078c6;
+
+// HOME PAGE
+$homeOrange: #ff6000;
+
+// GENERIC PADDING
+$padding-sm: 30px;
+$padding-md: 60px;
+$padding-lg: 100px;
+

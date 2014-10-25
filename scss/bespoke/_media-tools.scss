@@ -1,0 +1,212 @@
+#media-tools{
+
+	@include breakpoint(SMALL){
+		text-align: left;
+	}
+
+	@for $i from 1 through 5{
+
+		.tool-shell:nth-child(#{$i}){
+			$delay: ($animation * $i * 2);
+
+			h2{
+				$thisDelay: $delay + ($animation * 1);
+				transition: opacity $animation $thisDelay ease-out,
+							transform $animation $thisDelay ease-out;
+			}
+
+			@include featureIconTransitionDelay($delay);
+
+			.description{
+				$thisDelay: $delay + ($animation * 2);
+				transition: opacity $animation $thisDelay ease-out,
+							transform $animation $thisDelay ease-out;
+			}
+
+			.btn{
+				$thisDelay: $delay + ($animation * 3);
+				transition: opacity $animation $thisDelay ease-out,
+							transform $animation $thisDelay ease-out,
+							// include for :hover (no delay)
+							color $animation ease-out,
+							background-color $animation ease-out,
+							border-color $animation ease-out;
+			}
+		}
+
+	} // end of loop
+
+	.tool-shell{
+		$dividerHeight: 10px;
+		@extend .vertical-spacing;
+		background: {
+			image: url(../img/bits-background.svg);
+			position: left top;
+		}
+		margin-bottom: $dividerHeight;
+		position: relative;
+
+		&:nth-child(3n + 2){
+			background-position: center top;
+		}
+
+		&:nth-child(3n + 3){
+			background-position: right top;
+		}
+
+		&:before, &:after{
+			@extend .pseudo-element-base;
+			left: 0;
+			width: 100%;
+		}
+
+		&:before{
+			height: 100%;
+			top: 0;
+		}
+
+		&:after{
+			background: {
+				position: left top;
+				repeat: repeat-x;
+			}
+			height: $dividerHeight;
+			top: 100%;
+		}
+	}
+
+	h2{
+		color: white;
+	}
+
+	.feature-icon{
+		margin-top: 30px;
+	}
+
+	.description{
+		margin-bottom: 25px;
+	}
+
+	.btn{
+		margin-bottom: $padding-sm;
+	}
+
+	.media-kit{
+		background-color: $stuffRed;
+		color: $stuffRed;
+
+		&:before{
+			background-image: linear-gradient(to left, rgba($stuffRed, 0), $stuffRed, rgba($stuffRed, 0));
+		}
+
+		&:after{
+			background-image: url(../img/dividers/stuff-red-divider.svg);
+		}
+
+		.description{
+			color: $stuffRedD;
+		}
+	}
+
+	.rate-card{
+		background-color: $stuffYellow;
+		color: $stuffYellow;
+
+		&:before{
+			background-image: linear-gradient(to left, rgba($stuffYellow, 0), $stuffYellow, rgba($stuffYellow, 0));
+		}
+
+		&:after{
+			background-image: url(../img/dividers/stuff-yellow-divider.svg);
+		}
+
+		.description{
+			color: $stuffYellowD;
+		}
+	}
+
+	.tech-specs{
+		background-color: $stuffGreen;
+		color: $stuffGreen;
+
+		&:before{
+			background-image: linear-gradient(to left, rgba($stuffGreen, 0), $stuffGreen, rgba($stuffGreen, 0));
+		}
+
+		&:after{
+			background-image: url(../img/dividers/stuff-green-divider.svg);
+		}
+
+		.description{
+			color: $stuffGreenD;
+		}
+	}
+
+	.terms-and-conditions{
+		background-color: $stuffBlue;
+		color: $stuffBlue;
+
+		&:before{
+			background-image: linear-gradient(to left, rgba($stuffBlue, 0), $stuffBlue, rgba($stuffBlue, 0));
+		}
+
+		&:after{
+			background-image: url(../img/dividers/stuff-blue-divider.svg);
+		}
+
+		.description{
+			color: $stuffBlueD;
+		}
+	}
+
+	.booking{
+		background-color: $stuffPurple;
+		color: $stuffPurple;
+
+		&:before{
+			background-image: linear-gradient(to left, rgba($stuffPurple, 0), $stuffPurple, rgba($stuffPurple, 0));
+		}
+
+		&:after{
+			background-image: url(../img/dividers/stuff-purple-divider.svg);
+		}
+
+		.description{
+			color: $stuffPurpleD;
+		}
+	}
+}
+
+.no-svg #media-tools{
+
+	.tool-shell{
+		background-image: url(../img/bits-background.png);
+	}
+
+	.media-kit:after{
+		background-image: url(../img/dividers/stuff-red-divider.png);
+	}
+
+	.rate-card:after{
+		background-image: url(../img/dividers/stuff-yellow-divider.png);
+	}
+
+	.tech-specs:after{
+		background-image: url(../img/dividers/stuff-green-divider.png);
+	}
+
+	.terms-and-conditions:after{
+		background-image: url(../img/dividers/stuff-blue-divider.png);
+	}
+
+	.booking:after{
+		background-image: url(../img/dividers/stuff-purple-divider.png);
+	}
+}
+
+#media-tools.off-stage{
+
+	h2, .description, .btn{
+		@extend .generic-animation;
+	}
+}

@@ -1,0 +1,22 @@
+.stuff-divider{
+	$thisHeight: 10px;
+	background-color: black;
+	height: $thisHeight;
+	margin: $thisHeight 0;
+
+	// &.marginTop{ margin-top: $thisHeight; }
+
+	// &.marginBottom{ margin-bottom: $thisHeight; }
+
+	.segment{
+		float: left;
+		height: $thisHeight;
+		width: 20%;
+	}
+
+	.red{ background-color: $stuffRed; }
+	.yellow{ background-color: $stuffYellow; }
+	.green{ background-color: $stuffGreen; }
+	.blue{ background-color: $stuffBlue; }
+	.purple{ background-color: $stuffPurple; }
+}
